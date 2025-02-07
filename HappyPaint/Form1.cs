@@ -154,7 +154,16 @@ namespace HappyPaint
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-
+            if (pictureBox1.Width > 0 && pictureBox1.Height > 0)
+            {
+                Bitmap tmp_prev = new Bitmap(map);
+                map = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                graphics = Graphics.FromImage(map);
+                graphics.Clear(Color.White); 
+                graphics.DrawImage(tmp_prev, 0, 0);
+                pictureBox1.Image = map;
+                tmp_prev.Dispose();
+            }
         }
     }
 }
